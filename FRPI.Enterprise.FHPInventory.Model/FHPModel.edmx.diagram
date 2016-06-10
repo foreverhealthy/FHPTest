@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="446f639c906d485988c5ef3718654560" Name="Diagram1">
+        <EntityTypeShape EntityType="fhpInventoryModel.ActionType" Width="1.5" PointX="0.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.BatchNo" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.BottleType" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.BranchInventoryByBatch" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.BranchInventorySummary" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.DeliverylogDetail" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.DeliveryLog" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.DeliveryReceipt" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.DRDetail" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.DRStatu" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.DRTransaction" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.DRTransactionType" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.DRType" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.InitialAdditionalHistory" Width="1.5" PointX="3" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.PRDetail" Width="1.5" PointX="5.25" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.ProdRequest" Width="1.5" PointX="3" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.PRStatu" Width="1.5" PointX="0.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.PRTransactionType" Width="1.5" PointX="0.75" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.ReleasingActionType" Width="1.5" PointX="0.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.ReleasingHistory" Width="1.5" PointX="3" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.ReplenishmentDetail" Width="1.5" PointX="5.25" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.ReplenishmentHistory" Width="1.5" PointX="3" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.RunningInventory" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.SLIDetail" Width="1.5" PointX="14.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.SLIStatu" Width="1.5" PointX="9.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.StockLimitIncrease" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.Supplier" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.TransferHistory" Width="1.5" PointX="3" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fhpInventoryModel.TransferRemark" Width="1.5" PointX="8.25" PointY="27" IsExpanded="true" />
+        <AssociationConnector Association="fhpInventoryModel.FK_InitialAdditionalHistory_ActionType" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_BatchNo_BranchInventoryByBatch" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_BatchNo_RunningInventory" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_BottleType" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_BranchInventorySummary" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_DeliverylogDetails_DeliveryLogs" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_DeliveryLogs_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_DeliveryLogs" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_DeliveryReceipt_DRStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_DeliveryReceipt_DRTrasanctionType" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_DeliveryReceipt_DRTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_DRDetails_DeliveryReceipt" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_DRTransactions_DeliveryReceipt" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_DeliveryReceipt" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_DRTransactions_DRTrasanctionType" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_InitialAdditionalHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_PRDetails_ProdRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_ProdRequest_PRStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_ProdRequest_PRTransactionTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_ProdRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_TransferRemakrs_ProdRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_TransferRemakrs_PRStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_ReleasingHistory_ReleasingActionType" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_ReleasingHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_ReplenishmentDetails_ReplenishmentHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_ReplenishmentHistory_ReplenishmentHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_ReplenishmentHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_RunningInventory_TransferHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_SLIDetails_StockLimitIncrease" ManuallyRouted="false" />
+        <AssociationConnector Association="fhpInventoryModel.FK_StockLimitIncrease_SLIStatus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

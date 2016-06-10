@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EA802DF7-EFB8-482F-BDCF-C5F97D80EB6B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FRPI.FHP.Helper</RootNamespace>
+    <AssemblyName>FRPI.FHP.Helper</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\InventoryHelperRepo.cs" />
+    <Compile Include="Contracts\IInventoryHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FRPI.Enterprise.FHPInventory.Model\FRPI.Enterprise.FHPInventory.Model.csproj">
+      <Project>{63019569-faa9-4163-9c61-eee45bb76278}</Project>
+      <Name>FRPI.Enterprise.FHPInventory.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FRPI.FHP.Core.Common.Contracts\FRPI.FHP.Core.Common.Contracts.csproj">
+      <Project>{190fe6f0-b89b-49f4-b8b2-cf83ce13e2a5}</Project>
+      <Name>FRPI.FHP.Core.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FRPI.FHP.Core.Common\FRPI.FHP.Core.Common.csproj">
+      <Project>{194714fd-0224-41dc-aaf8-ade99472bd8b}</Project>
+      <Name>FRPI.FHP.Core.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FRPI.FHP.Core\FRPI.FHP.Core.csproj">
+      <Project>{f0b80a8c-c211-43e5-adf0-29805a402a00}</Project>
+      <Name>FRPI.FHP.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FRPI.FHP.ViewModel\FRPI.FHP.ViewModel.csproj">
+      <Project>{b7059ccf-5b58-4e97-9ee1-bf9b5a54494e}</Project>
+      <Name>FRPI.FHP.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

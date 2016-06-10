@@ -1,0 +1,103 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRPI.Enterprise.FHPInventory.APIV2", "FRPI.Enterprise.FHPInventory.APIV2\FRPI.Enterprise.FHPInventory.APIV2.csproj", "{563972DC-7B6F-41BA-9229-E6F94F1DBC9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRPI.Enterprise.FHPInventory.Model", "FRPI.Enterprise.FHPInventory.Model\FRPI.Enterprise.FHPInventory.Model.csproj", "{63019569-FAA9-4163-9C61-EEE45BB76278}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRPI.FHP.Core.Common", "FRPI.FHP.Core.Common\FRPI.FHP.Core.Common.csproj", "{194714FD-0224-41DC-AAF8-ADE99472BD8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRPI.FHP.Core.Common.Contracts", "FRPI.FHP.Core.Common.Contracts\FRPI.FHP.Core.Common.Contracts.csproj", "{190FE6F0-B89B-49F4-B8B2-CF83CE13E2A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRPI.FHP.Core", "FRPI.FHP.Core\FRPI.FHP.Core.csproj", "{F0B80A8C-C211-43E5-ADF0-29805A402A00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHP.Unit.Test", "FHP.Unit.Test\FHP.Unit.Test.csproj", "{ED58B900-6AC2-4E9C-9E53-D6BD0405E626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRPI.FHPInventory.Services", "FRPI.FHPInventory.Services\FRPI.FHPInventory.Services.csproj", "{A54A3029-A30F-409C-B3A0-8CC0B2E51EB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRPI.FHP.ViewModel", "FRPI.FHP.ViewModel\FRPI.FHP.ViewModel.csproj", "{B7059CCF-5B58-4E97-9EE1-BF9B5A54494E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRPI.FHP.Helper", "FRPI.FHP.Helper\FRPI.FHP.Helper.csproj", "{EA802DF7-EFB8-482F-BDCF-C5F97D80EB6B}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 10
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.169.188.6:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = FHP.Unit.Test\\FHP.Unit.Test.csproj
+		SccProjectName0 = FHP.Unit.Test
+		SccLocalPath0 = FHP.Unit.Test
+		SccProjectUniqueName1 = FRPI.Enterprise.FHPInventory.APIV2\\FRPI.Enterprise.FHPInventory.APIV2.csproj
+		SccProjectName1 = FRPI.Enterprise.FHPInventory.APIV2
+		SccLocalPath1 = FRPI.Enterprise.FHPInventory.APIV2
+		SccProjectUniqueName2 = FRPI.FHP.Helper\\FRPI.FHP.Helper.csproj
+		SccProjectName2 = FRPI.FHP.Helper
+		SccLocalPath2 = FRPI.FHP.Helper
+		SccProjectUniqueName3 = FRPI.FHP.ViewModel\\FRPI.FHP.ViewModel.csproj
+		SccProjectName3 = FRPI.FHP.ViewModel
+		SccLocalPath3 = FRPI.FHP.ViewModel
+		SccProjectUniqueName4 = FRPI.FHPInventory.Services\\FRPI.FHPInventory.Services.csproj
+		SccProjectName4 = FRPI.FHPInventory.Services
+		SccLocalPath4 = FRPI.FHPInventory.Services
+		SccLocalPath5 = .
+		SccProjectUniqueName6 = FRPI.Enterprise.FHPInventory.Model\\FRPI.Enterprise.FHPInventory.Model.csproj
+		SccProjectName6 = FRPI.Enterprise.FHPInventory.Model
+		SccLocalPath6 = FRPI.Enterprise.FHPInventory.Model
+		SccProjectUniqueName7 = FRPI.FHP.Core.Common.Contracts\\FRPI.FHP.Core.Common.Contracts.csproj
+		SccProjectName7 = FRPI.FHP.Core.Common.Contracts
+		SccLocalPath7 = FRPI.FHP.Core.Common.Contracts
+		SccProjectUniqueName8 = FRPI.FHP.Core.Common\\FRPI.FHP.Core.Common.csproj
+		SccProjectName8 = FRPI.FHP.Core.Common
+		SccLocalPath8 = FRPI.FHP.Core.Common
+		SccProjectUniqueName9 = FRPI.FHP.Core\\FRPI.FHP.Core.csproj
+		SccProjectName9 = FRPI.FHP.Core
+		SccLocalPath9 = FRPI.FHP.Core
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{563972DC-7B6F-41BA-9229-E6F94F1DBC9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{563972DC-7B6F-41BA-9229-E6F94F1DBC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{563972DC-7B6F-41BA-9229-E6F94F1DBC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{563972DC-7B6F-41BA-9229-E6F94F1DBC9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63019569-FAA9-4163-9C61-EEE45BB76278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63019569-FAA9-4163-9C61-EEE45BB76278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63019569-FAA9-4163-9C61-EEE45BB76278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63019569-FAA9-4163-9C61-EEE45BB76278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194714FD-0224-41DC-AAF8-ADE99472BD8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194714FD-0224-41DC-AAF8-ADE99472BD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194714FD-0224-41DC-AAF8-ADE99472BD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194714FD-0224-41DC-AAF8-ADE99472BD8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{190FE6F0-B89B-49F4-B8B2-CF83CE13E2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{190FE6F0-B89B-49F4-B8B2-CF83CE13E2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{190FE6F0-B89B-49F4-B8B2-CF83CE13E2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{190FE6F0-B89B-49F4-B8B2-CF83CE13E2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0B80A8C-C211-43E5-ADF0-29805A402A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0B80A8C-C211-43E5-ADF0-29805A402A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0B80A8C-C211-43E5-ADF0-29805A402A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0B80A8C-C211-43E5-ADF0-29805A402A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED58B900-6AC2-4E9C-9E53-D6BD0405E626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED58B900-6AC2-4E9C-9E53-D6BD0405E626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED58B900-6AC2-4E9C-9E53-D6BD0405E626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED58B900-6AC2-4E9C-9E53-D6BD0405E626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54A3029-A30F-409C-B3A0-8CC0B2E51EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54A3029-A30F-409C-B3A0-8CC0B2E51EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54A3029-A30F-409C-B3A0-8CC0B2E51EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54A3029-A30F-409C-B3A0-8CC0B2E51EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7059CCF-5B58-4E97-9EE1-BF9B5A54494E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7059CCF-5B58-4E97-9EE1-BF9B5A54494E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7059CCF-5B58-4E97-9EE1-BF9B5A54494E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7059CCF-5B58-4E97-9EE1-BF9B5A54494E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA802DF7-EFB8-482F-BDCF-C5F97D80EB6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA802DF7-EFB8-482F-BDCF-C5F97D80EB6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA802DF7-EFB8-482F-BDCF-C5F97D80EB6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA802DF7-EFB8-482F-BDCF-C5F97D80EB6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
