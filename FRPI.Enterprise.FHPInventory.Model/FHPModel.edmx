@@ -1,0 +1,2170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="fhpInventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BatchNo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BatnchNo" Type="nvarchar(max)" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="RIId" Type="int" />
+          <Property Name="BranchInventoryByBatchId" Type="int" />
+          <Property Name="DateExpired" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BottleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="BranchInventoryByBatch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="BranchId" Type="int" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="BatchNo" Type="nvarchar(max)" />
+          <Property Name="DateExpired" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BranchInventorySummary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="TotalInventory" Type="int" />
+          <Property Name="ProductReleased" Type="int" />
+          <Property Name="ProductOnHand" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="TotalIn" Type="int" />
+          <Property Name="TotalOut" Type="int" />
+        </EntityType>
+        <EntityType Name="DeliverylogDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Good" Type="int" />
+          <Property Name="Bad" Type="int" />
+          <Property Name="Lost" Type="int" />
+          <Property Name="TotalQty" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="DateExpiry" Type="datetime" />
+          <Property Name="DeliveryLogsId" Type="int" />
+        </EntityType>
+        <EntityType Name="DeliveryLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupId" Type="int" />
+          <Property Name="DateReceived" Type="datetime" />
+          <Property Name="ReceivedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="InputDate" Type="datetime" />
+          <Property Name="InputBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="BatchNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchId" Type="int" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DeliveryReceipt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DRTypeId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="DRNumber" Type="nvarchar(max)" />
+          <Property Name="DRStatusId" Type="int" />
+          <Property Name="TransactionBranchId" Type="int" />
+          <Property Name="DateClosed" Type="datetime" />
+          <Property Name="IboNo" Type="nvarchar(max)" />
+          <Property Name="TransactionBy" Type="nvarchar(max)" />
+          <Property Name="DRTransactionTypeId" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateReleased" Type="datetime" />
+          <Property Name="ReleasedBy" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar(max)" />
+          <Property Name="ClosedBy" Type="nvarchar(max)" />
+          <Property Name="BranchClosed" Type="int" />
+          <Property Name="ReleasedBranchId" Type="int" />
+          <Property Name="CreatedBranchId" Type="int" />
+        </EntityType>
+        <EntityType Name="DRDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="DRQty" Type="int" Nullable="false" />
+          <Property Name="DRCloseQty" Type="int" Nullable="false" />
+          <Property Name="DRId" Type="int" />
+        </EntityType>
+        <EntityType Name="DRStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DRTransactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceNo" Type="nvarchar(max)" />
+          <Property Name="TransactionTypeId" Type="int" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="DRId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="TransactionBy" Type="nvarchar(max)" />
+          <Property Name="TransactionBranchId" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DRTransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DRTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="InitialAdditionalHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="ActionTypeId" Type="int" />
+          <Property Name="BranchIdTo" Type="int" />
+          <Property Name="BranchIdFrom" Type="int" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="BadQty" Type="int" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateReceived" Type="datetime" />
+          <Property Name="Receivedby" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PRDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="CurrentOnHand" Type="int" />
+          <Property Name="QuantityGiven" Type="int" />
+          <Property Name="QuantityNeeded" Type="int" />
+          <Property Name="PRId" Type="int" />
+          <Property Name="QuantityReceived" Type="int" />
+        </EntityType>
+        <EntityType Name="ProdRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateRequest" Type="datetime" />
+          <Property Name="NameRequested" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchToRequest" Type="int" />
+          <Property Name="BranchRequested" Type="int" />
+          <Property Name="PREQNo" Type="nvarchar(max)" />
+          <Property Name="PRELNo" Type="nvarchar(max)" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="DateApproved" Type="datetime" />
+          <Property Name="Approvedby" Type="nvarchar(max)" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="PRTransactionTypeId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateReceived" Type="datetime" />
+          <Property Name="ReceivedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="isApproved" Type="bit" />
+        </EntityType>
+        <EntityType Name="PRStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PRTransactionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReleasingActionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ReleasingHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchId" Type="int" />
+          <Property Name="ReleasingActionTypeId" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="PromoNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ReplenishmentDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="RepId" Type="int" />
+        </EntityType>
+        <EntityType Name="ReplenishmentHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchId" Type="int" />
+          <Property Name="DateFrom" Type="datetime" />
+          <Property Name="DateTo" Type="datetime" />
+          <Property Name="BranchIdCreated" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RunningInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Bottles" Type="int" />
+          <Property Name="PreviousQty" Type="int" />
+          <Property Name="NewQty" Type="int" Nullable="false" />
+          <Property Name="ActionType" Type="int" />
+          <Property Name="BottleTypeId" Type="int" />
+          <Property Name="ReleasingHistoryId" Type="int" />
+          <Property Name="DeliveryReceiptId" Type="int" />
+          <Property Name="ProdReqId" Type="int" />
+          <Property Name="InitialAdditionalId" Type="int" />
+          <Property Name="BranchSummaryId" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="ReplenishmentId" Type="int" />
+          <Property Name="TransferHistoryId" Type="int" />
+          <Property Name="DeliveryLogsId" Type="int" />
+          <Property Name="BranchId" Type="int" />
+        </EntityType>
+        <EntityType Name="SLIDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="CurrentQtyLimit" Type="int" Nullable="false" />
+          <Property Name="RequestedQtyLimit" Type="int" Nullable="false" />
+          <Property Name="ApproveQtyLimit" Type="int" Nullable="false" />
+          <Property Name="SLIID" Type="int" />
+        </EntityType>
+        <EntityType Name="SLIStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StockLimitIncrease">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchRequested" Type="int" />
+          <Property Name="BranchTo" Type="int" />
+          <Property Name="DateRequested" Type="datetime" />
+          <Property Name="RequestedBy" Type="nvarchar(max)" />
+          <Property Name="ApprovedBy" Type="nvarchar(max)" />
+          <Property Name="DateApproved" Type="datetime" />
+          <Property Name="StatusId" Type="int" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Company" Type="bit" />
+          <Property Name="Person" Type="bit" />
+          <Property Name="ContactInfo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TransferHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="TransferFrom" Type="int" />
+          <Property Name="TransferTo" Type="int" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="DateReceived" Type="datetime" />
+          <Property Name="Receivedby" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TransferRemarks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RemarksBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="ProdRequestId" Type="int" />
+          <Property Name="PRStatusId" Type="int" />
+        </EntityType>
+        <Association Name="FK_BatchNo_BranchInventoryByBatch">
+          <End Role="BranchInventoryByBatch" Type="Self.BranchInventoryByBatch" Multiplicity="0..1" />
+          <End Role="BatchNo" Type="Self.BatchNo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchInventoryByBatch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BatchNo">
+              <PropertyRef Name="BranchInventoryByBatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BatchNo_RunningInventory">
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="0..1" />
+          <End Role="BatchNo" Type="Self.BatchNo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunningInventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BatchNo">
+              <PropertyRef Name="RIId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliverylogDetails_DeliveryLogs">
+          <End Role="DeliveryLogs" Type="Self.DeliveryLogs" Multiplicity="0..1" />
+          <End Role="DeliverylogDetails" Type="Self.DeliverylogDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryLogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverylogDetails">
+              <PropertyRef Name="DeliveryLogsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryLogs_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="DeliveryLogs" Type="Self.DeliveryLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryLogs">
+              <PropertyRef Name="SupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryReceipt_DRStatus">
+          <End Role="DRStatus" Type="Self.DRStatus" Multiplicity="0..1" />
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryReceipt">
+              <PropertyRef Name="DRStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryReceipt_DRTrasanctionType">
+          <End Role="DRTransactionType" Type="Self.DRTransactionType" Multiplicity="0..1" />
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRTransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryReceipt">
+              <PropertyRef Name="DRTransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryReceipt_DRTypes">
+          <End Role="DRTypes" Type="Self.DRTypes" Multiplicity="0..1" />
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryReceipt">
+              <PropertyRef Name="DRTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DRDetails_DeliveryReceipt">
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="0..1" />
+          <End Role="DRDetails" Type="Self.DRDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryReceipt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DRDetails">
+              <PropertyRef Name="DRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DRTransactions_DeliveryReceipt">
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="0..1" />
+          <End Role="DRTransactions" Type="Self.DRTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryReceipt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DRTransactions">
+              <PropertyRef Name="DRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DRTransactions_DRTrasanctionType">
+          <End Role="DRTransactionType" Type="Self.DRTransactionType" Multiplicity="0..1" />
+          <End Role="DRTransactions" Type="Self.DRTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRTransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DRTransactions">
+              <PropertyRef Name="TransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InitialAdditionalHistory_ActionType">
+          <End Role="ActionType" Type="Self.ActionType" Multiplicity="0..1" />
+          <End Role="InitialAdditionalHistory" Type="Self.InitialAdditionalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InitialAdditionalHistory">
+              <PropertyRef Name="ActionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRDetails_ProdRequest">
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="0..1" />
+          <End Role="PRDetails" Type="Self.PRDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRDetails">
+              <PropertyRef Name="PRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdRequest_PRStatus">
+          <End Role="PRStatus" Type="Self.PRStatus" Multiplicity="0..1" />
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdRequest">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdRequest_PRTransactionTypes">
+          <End Role="PRTransactionTypes" Type="Self.PRTransactionTypes" Multiplicity="0..1" />
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRTransactionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdRequest">
+              <PropertyRef Name="PRTransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReleasingHistory_ReleasingActionType">
+          <End Role="ReleasingActionType" Type="Self.ReleasingActionType" Multiplicity="0..1" />
+          <End Role="ReleasingHistory" Type="Self.ReleasingHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReleasingActionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReleasingHistory">
+              <PropertyRef Name="ReleasingActionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplenishmentDetails_ReplenishmentHistory">
+          <End Role="ReplenishmentHistory" Type="Self.ReplenishmentHistory" Multiplicity="0..1" />
+          <End Role="ReplenishmentDetails" Type="Self.ReplenishmentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReplenishmentHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReplenishmentDetails">
+              <PropertyRef Name="RepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplenishmentHistory_ReplenishmentHistory">
+          <End Role="ReplenishmentHistory" Type="Self.ReplenishmentHistory" Multiplicity="1" />
+          <End Role="ReplenishmentHistory1" Type="Self.ReplenishmentHistory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ReplenishmentHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReplenishmentHistory1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_BottleType">
+          <End Role="BottleType" Type="Self.BottleType" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BottleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="BottleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_BranchInventorySummary">
+          <End Role="BranchInventorySummary" Type="Self.BranchInventorySummary" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchInventorySummary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="BranchSummaryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_DeliveryLogs">
+          <End Role="DeliveryLogs" Type="Self.DeliveryLogs" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryLogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="DeliveryLogsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_DeliveryReceipt">
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryReceipt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="DeliveryReceiptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_InitialAdditionalHistory">
+          <End Role="InitialAdditionalHistory" Type="Self.InitialAdditionalHistory" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InitialAdditionalHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="InitialAdditionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_ProdRequest">
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="ProdReqId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_ReleasingHistory">
+          <End Role="ReleasingHistory" Type="Self.ReleasingHistory" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReleasingHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="ReleasingHistoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_ReplenishmentHistory">
+          <End Role="ReplenishmentHistory" Type="Self.ReplenishmentHistory" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReplenishmentHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="ReplenishmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_TransferHistory">
+          <End Role="TransferHistory" Type="Self.TransferHistory" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransferHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="TransferHistoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SLIDetails_StockLimitIncrease">
+          <End Role="StockLimitIncrease" Type="Self.StockLimitIncrease" Multiplicity="0..1" />
+          <End Role="SLIDetails" Type="Self.SLIDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockLimitIncrease">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SLIDetails">
+              <PropertyRef Name="SLIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockLimitIncrease_SLIStatus">
+          <End Role="SLIStatus" Type="Self.SLIStatus" Multiplicity="0..1" />
+          <End Role="StockLimitIncrease" Type="Self.StockLimitIncrease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLIStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockLimitIncrease">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferRemakrs_ProdRequest">
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="0..1" />
+          <End Role="TransferRemarks" Type="Self.TransferRemarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransferRemarks">
+              <PropertyRef Name="ProdRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferRemakrs_PRStatus">
+          <End Role="PRStatus" Type="Self.PRStatus" Multiplicity="0..1" />
+          <End Role="TransferRemarks" Type="Self.TransferRemarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransferRemarks">
+              <PropertyRef Name="PRStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fhpInventoryModelStoreContainer">
+          <EntitySet Name="ActionType" EntityType="Self.ActionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BatchNo" EntityType="Self.BatchNo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BottleType" EntityType="Self.BottleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchInventoryByBatch" EntityType="Self.BranchInventoryByBatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchInventorySummary" EntityType="Self.BranchInventorySummary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliverylogDetails" EntityType="Self.DeliverylogDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryLogs" EntityType="Self.DeliveryLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryReceipt" EntityType="Self.DeliveryReceipt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DRDetails" EntityType="Self.DRDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DRStatus" EntityType="Self.DRStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DRTransactions" EntityType="Self.DRTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DRTransactionType" EntityType="Self.DRTransactionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DRTypes" EntityType="Self.DRTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InitialAdditionalHistory" EntityType="Self.InitialAdditionalHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRDetails" EntityType="Self.PRDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProdRequest" EntityType="Self.ProdRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRStatus" EntityType="Self.PRStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRTransactionTypes" EntityType="Self.PRTransactionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReleasingActionType" EntityType="Self.ReleasingActionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReleasingHistory" EntityType="Self.ReleasingHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReplenishmentDetails" EntityType="Self.ReplenishmentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReplenishmentHistory" EntityType="Self.ReplenishmentHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RunningInventory" EntityType="Self.RunningInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SLIDetails" EntityType="Self.SLIDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SLIStatus" EntityType="Self.SLIStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockLimitIncrease" EntityType="Self.StockLimitIncrease" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransferHistory" EntityType="Self.TransferHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransferRemarks" EntityType="Self.TransferRemarks" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BatchNo_BranchInventoryByBatch" Association="Self.FK_BatchNo_BranchInventoryByBatch">
+            <End Role="BranchInventoryByBatch" EntitySet="BranchInventoryByBatch" />
+            <End Role="BatchNo" EntitySet="BatchNo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BatchNo_RunningInventory" Association="Self.FK_BatchNo_RunningInventory">
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+            <End Role="BatchNo" EntitySet="BatchNo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliverylogDetails_DeliveryLogs" Association="Self.FK_DeliverylogDetails_DeliveryLogs">
+            <End Role="DeliveryLogs" EntitySet="DeliveryLogs" />
+            <End Role="DeliverylogDetails" EntitySet="DeliverylogDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryLogs_Supplier" Association="Self.FK_DeliveryLogs_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="DeliveryLogs" EntitySet="DeliveryLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryReceipt_DRStatus" Association="Self.FK_DeliveryReceipt_DRStatus">
+            <End Role="DRStatus" EntitySet="DRStatus" />
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryReceipt_DRTrasanctionType" Association="Self.FK_DeliveryReceipt_DRTrasanctionType">
+            <End Role="DRTransactionType" EntitySet="DRTransactionType" />
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryReceipt_DRTypes" Association="Self.FK_DeliveryReceipt_DRTypes">
+            <End Role="DRTypes" EntitySet="DRTypes" />
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DRDetails_DeliveryReceipt" Association="Self.FK_DRDetails_DeliveryReceipt">
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipt" />
+            <End Role="DRDetails" EntitySet="DRDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DRTransactions_DeliveryReceipt" Association="Self.FK_DRTransactions_DeliveryReceipt">
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipt" />
+            <End Role="DRTransactions" EntitySet="DRTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DRTransactions_DRTrasanctionType" Association="Self.FK_DRTransactions_DRTrasanctionType">
+            <End Role="DRTransactionType" EntitySet="DRTransactionType" />
+            <End Role="DRTransactions" EntitySet="DRTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InitialAdditionalHistory_ActionType" Association="Self.FK_InitialAdditionalHistory_ActionType">
+            <End Role="ActionType" EntitySet="ActionType" />
+            <End Role="InitialAdditionalHistory" EntitySet="InitialAdditionalHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRDetails_ProdRequest" Association="Self.FK_PRDetails_ProdRequest">
+            <End Role="ProdRequest" EntitySet="ProdRequest" />
+            <End Role="PRDetails" EntitySet="PRDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdRequest_PRStatus" Association="Self.FK_ProdRequest_PRStatus">
+            <End Role="PRStatus" EntitySet="PRStatus" />
+            <End Role="ProdRequest" EntitySet="ProdRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdRequest_PRTransactionTypes" Association="Self.FK_ProdRequest_PRTransactionTypes">
+            <End Role="PRTransactionTypes" EntitySet="PRTransactionTypes" />
+            <End Role="ProdRequest" EntitySet="ProdRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReleasingHistory_ReleasingActionType" Association="Self.FK_ReleasingHistory_ReleasingActionType">
+            <End Role="ReleasingActionType" EntitySet="ReleasingActionType" />
+            <End Role="ReleasingHistory" EntitySet="ReleasingHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplenishmentDetails_ReplenishmentHistory" Association="Self.FK_ReplenishmentDetails_ReplenishmentHistory">
+            <End Role="ReplenishmentHistory" EntitySet="ReplenishmentHistory" />
+            <End Role="ReplenishmentDetails" EntitySet="ReplenishmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplenishmentHistory_ReplenishmentHistory" Association="Self.FK_ReplenishmentHistory_ReplenishmentHistory">
+            <End Role="ReplenishmentHistory" EntitySet="ReplenishmentHistory" />
+            <End Role="ReplenishmentHistory1" EntitySet="ReplenishmentHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_BottleType" Association="Self.FK_RunningInventory_BottleType">
+            <End Role="BottleType" EntitySet="BottleType" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_BranchInventorySummary" Association="Self.FK_RunningInventory_BranchInventorySummary">
+            <End Role="BranchInventorySummary" EntitySet="BranchInventorySummary" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_DeliveryLogs" Association="Self.FK_RunningInventory_DeliveryLogs">
+            <End Role="DeliveryLogs" EntitySet="DeliveryLogs" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_DeliveryReceipt" Association="Self.FK_RunningInventory_DeliveryReceipt">
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipt" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_InitialAdditionalHistory" Association="Self.FK_RunningInventory_InitialAdditionalHistory">
+            <End Role="InitialAdditionalHistory" EntitySet="InitialAdditionalHistory" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_ProdRequest" Association="Self.FK_RunningInventory_ProdRequest">
+            <End Role="ProdRequest" EntitySet="ProdRequest" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_ReleasingHistory" Association="Self.FK_RunningInventory_ReleasingHistory">
+            <End Role="ReleasingHistory" EntitySet="ReleasingHistory" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_ReplenishmentHistory" Association="Self.FK_RunningInventory_ReplenishmentHistory">
+            <End Role="ReplenishmentHistory" EntitySet="ReplenishmentHistory" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_TransferHistory" Association="Self.FK_RunningInventory_TransferHistory">
+            <End Role="TransferHistory" EntitySet="TransferHistory" />
+            <End Role="RunningInventory" EntitySet="RunningInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SLIDetails_StockLimitIncrease" Association="Self.FK_SLIDetails_StockLimitIncrease">
+            <End Role="StockLimitIncrease" EntitySet="StockLimitIncrease" />
+            <End Role="SLIDetails" EntitySet="SLIDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockLimitIncrease_SLIStatus" Association="Self.FK_StockLimitIncrease_SLIStatus">
+            <End Role="SLIStatus" EntitySet="SLIStatus" />
+            <End Role="StockLimitIncrease" EntitySet="StockLimitIncrease" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferRemakrs_ProdRequest" Association="Self.FK_TransferRemakrs_ProdRequest">
+            <End Role="ProdRequest" EntitySet="ProdRequest" />
+            <End Role="TransferRemarks" EntitySet="TransferRemarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferRemakrs_PRStatus" Association="Self.FK_TransferRemakrs_PRStatus">
+            <End Role="PRStatus" EntitySet="PRStatus" />
+            <End Role="TransferRemarks" EntitySet="TransferRemarks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fhpInventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InitialAdditionalHistories" Relationship="Self.FK_InitialAdditionalHistory_ActionType" FromRole="ActionType" ToRole="InitialAdditionalHistory" />
+        </EntityType>
+        <EntityType Name="BatchNo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BatnchNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="RIId" Type="Int32" />
+          <Property Name="BranchInventoryByBatchId" Type="Int32" />
+          <Property Name="DateExpired" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BranchInventoryByBatch" Relationship="Self.FK_BatchNo_BranchInventoryByBatch" FromRole="BatchNo" ToRole="BranchInventoryByBatch" />
+          <NavigationProperty Name="RunningInventory" Relationship="Self.FK_BatchNo_RunningInventory" FromRole="BatchNo" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="BottleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_BottleType" FromRole="BottleType" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="BranchInventoryByBatch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="BranchId" Type="Int32" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="BatchNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateExpired" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BatchNoes" Relationship="Self.FK_BatchNo_BranchInventoryByBatch" FromRole="BranchInventoryByBatch" ToRole="BatchNo" />
+        </EntityType>
+        <EntityType Name="BranchInventorySummary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="TotalInventory" Type="Int32" />
+          <Property Name="ProductReleased" Type="Int32" />
+          <Property Name="ProductOnHand" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="TotalIn" Type="Int32" />
+          <Property Name="TotalOut" Type="Int32" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_BranchInventorySummary" FromRole="BranchInventorySummary" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="DeliverylogDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Good" Type="Int32" />
+          <Property Name="Bad" Type="Int32" />
+          <Property Name="Lost" Type="Int32" />
+          <Property Name="TotalQty" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="DateExpiry" Type="DateTime" Precision="3" />
+          <Property Name="DeliveryLogsId" Type="Int32" />
+          <NavigationProperty Name="DeliveryLog" Relationship="Self.FK_DeliverylogDetails_DeliveryLogs" FromRole="DeliverylogDetails" ToRole="DeliveryLogs" />
+        </EntityType>
+        <EntityType Name="DeliveryLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupId" Type="Int32" />
+          <Property Name="DateReceived" Type="DateTime" Precision="3" />
+          <Property Name="ReceivedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InputDate" Type="DateTime" Precision="3" />
+          <Property Name="InputBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BatchNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeliverylogDetails" Relationship="Self.FK_DeliverylogDetails_DeliveryLogs" FromRole="DeliveryLogs" ToRole="DeliverylogDetails" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_DeliveryLogs_Supplier" FromRole="DeliveryLogs" ToRole="Supplier" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_DeliveryLogs" FromRole="DeliveryLogs" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="DeliveryReceipt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DRTypeId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DRNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DRStatusId" Type="Int32" />
+          <Property Name="TransactionBranchId" Type="Int32" />
+          <Property Name="DateClosed" Type="DateTime" Precision="3" />
+          <Property Name="IboNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DRTransactionTypeId" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateReleased" Type="DateTime" Precision="3" />
+          <Property Name="ReleasedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClosedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BranchClosed" Type="Int32" />
+          <Property Name="ReleasedBranchId" Type="Int32" />
+          <Property Name="CreatedBranchId" Type="Int32" />
+          <NavigationProperty Name="DRStatu" Relationship="Self.FK_DeliveryReceipt_DRStatus" FromRole="DeliveryReceipt" ToRole="DRStatus" />
+          <NavigationProperty Name="DRTransactionType" Relationship="Self.FK_DeliveryReceipt_DRTrasanctionType" FromRole="DeliveryReceipt" ToRole="DRTransactionType" />
+          <NavigationProperty Name="DRType" Relationship="Self.FK_DeliveryReceipt_DRTypes" FromRole="DeliveryReceipt" ToRole="DRTypes" />
+          <NavigationProperty Name="DRDetails" Relationship="Self.FK_DRDetails_DeliveryReceipt" FromRole="DeliveryReceipt" ToRole="DRDetails" />
+          <NavigationProperty Name="DRTransactions" Relationship="Self.FK_DRTransactions_DeliveryReceipt" FromRole="DeliveryReceipt" ToRole="DRTransactions" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_DeliveryReceipt" FromRole="DeliveryReceipt" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="DRDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="DRQty" Type="Int32" Nullable="false" />
+          <Property Name="DRCloseQty" Type="Int32" Nullable="false" />
+          <Property Name="DRId" Type="Int32" />
+          <NavigationProperty Name="DeliveryReceipt" Relationship="Self.FK_DRDetails_DeliveryReceipt" FromRole="DRDetails" ToRole="DeliveryReceipt" />
+        </EntityType>
+        <EntityType Name="DRStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeliveryReceipts" Relationship="Self.FK_DeliveryReceipt_DRStatus" FromRole="DRStatus" ToRole="DeliveryReceipt" />
+        </EntityType>
+        <EntityType Name="DRTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionTypeId" Type="Int32" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="DRId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="TransactionBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionBranchId" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DeliveryReceipt" Relationship="Self.FK_DRTransactions_DeliveryReceipt" FromRole="DRTransactions" ToRole="DeliveryReceipt" />
+          <NavigationProperty Name="DRTransactionType" Relationship="Self.FK_DRTransactions_DRTrasanctionType" FromRole="DRTransactions" ToRole="DRTransactionType" />
+        </EntityType>
+        <EntityType Name="DRTransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeliveryReceipts" Relationship="Self.FK_DeliveryReceipt_DRTrasanctionType" FromRole="DRTransactionType" ToRole="DeliveryReceipt" />
+          <NavigationProperty Name="DRTransactions" Relationship="Self.FK_DRTransactions_DRTrasanctionType" FromRole="DRTransactionType" ToRole="DRTransactions" />
+        </EntityType>
+        <EntityType Name="DRType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeliveryReceipts" Relationship="Self.FK_DeliveryReceipt_DRTypes" FromRole="DRTypes" ToRole="DeliveryReceipt" />
+        </EntityType>
+        <EntityType Name="InitialAdditionalHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="ActionTypeId" Type="Int32" />
+          <Property Name="BranchIdTo" Type="Int32" />
+          <Property Name="BranchIdFrom" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BadQty" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateReceived" Type="DateTime" Precision="3" />
+          <Property Name="Receivedby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ActionType" Relationship="Self.FK_InitialAdditionalHistory_ActionType" FromRole="InitialAdditionalHistory" ToRole="ActionType" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_InitialAdditionalHistory" FromRole="InitialAdditionalHistory" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="PRDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="CurrentOnHand" Type="Int32" />
+          <Property Name="QuantityGiven" Type="Int32" />
+          <Property Name="QuantityNeeded" Type="Int32" />
+          <Property Name="PRId" Type="Int32" />
+          <Property Name="QuantityReceived" Type="Int32" />
+          <NavigationProperty Name="ProdRequest" Relationship="Self.FK_PRDetails_ProdRequest" FromRole="PRDetails" ToRole="ProdRequest" />
+        </EntityType>
+        <EntityType Name="ProdRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateRequest" Type="DateTime" Precision="3" />
+          <Property Name="NameRequested" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchToRequest" Type="Int32" />
+          <Property Name="BranchRequested" Type="Int32" />
+          <Property Name="PREQNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PRELNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="DateApproved" Type="DateTime" Precision="3" />
+          <Property Name="Approvedby" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PRTransactionTypeId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateReceived" Type="DateTime" Precision="3" />
+          <Property Name="ReceivedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isApproved" Type="Boolean" />
+          <NavigationProperty Name="PRDetails" Relationship="Self.FK_PRDetails_ProdRequest" FromRole="ProdRequest" ToRole="PRDetails" />
+          <NavigationProperty Name="PRStatu" Relationship="Self.FK_ProdRequest_PRStatus" FromRole="ProdRequest" ToRole="PRStatus" />
+          <NavigationProperty Name="PRTransactionType" Relationship="Self.FK_ProdRequest_PRTransactionTypes" FromRole="ProdRequest" ToRole="PRTransactionTypes" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_ProdRequest" FromRole="ProdRequest" ToRole="RunningInventory" />
+          <NavigationProperty Name="TransferRemarks" Relationship="Self.FK_TransferRemakrs_ProdRequest" FromRole="ProdRequest" ToRole="TransferRemarks" />
+        </EntityType>
+        <EntityType Name="PRStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProdRequests" Relationship="Self.FK_ProdRequest_PRStatus" FromRole="PRStatus" ToRole="ProdRequest" />
+          <NavigationProperty Name="TransferRemarks" Relationship="Self.FK_TransferRemakrs_PRStatus" FromRole="PRStatus" ToRole="TransferRemarks" />
+        </EntityType>
+        <EntityType Name="PRTransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProdRequests" Relationship="Self.FK_ProdRequest_PRTransactionTypes" FromRole="PRTransactionTypes" ToRole="ProdRequest" />
+        </EntityType>
+        <EntityType Name="ReleasingActionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReleasingHistories" Relationship="Self.FK_ReleasingHistory_ReleasingActionType" FromRole="ReleasingActionType" ToRole="ReleasingHistory" />
+        </EntityType>
+        <EntityType Name="ReleasingHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" />
+          <Property Name="ReleasingActionTypeId" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="PromoNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReleasingActionType" Relationship="Self.FK_ReleasingHistory_ReleasingActionType" FromRole="ReleasingHistory" ToRole="ReleasingActionType" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_ReleasingHistory" FromRole="ReleasingHistory" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="ReplenishmentDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="RepId" Type="Int32" />
+          <NavigationProperty Name="ReplenishmentHistory" Relationship="Self.FK_ReplenishmentDetails_ReplenishmentHistory" FromRole="ReplenishmentDetails" ToRole="ReplenishmentHistory" />
+        </EntityType>
+        <EntityType Name="ReplenishmentHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int32" />
+          <Property Name="DateFrom" Type="DateTime" Precision="3" />
+          <Property Name="DateTo" Type="DateTime" Precision="3" />
+          <Property Name="BranchIdCreated" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReplenishmentDetails" Relationship="Self.FK_ReplenishmentDetails_ReplenishmentHistory" FromRole="ReplenishmentHistory" ToRole="ReplenishmentDetails" />
+          <NavigationProperty Name="ReplenishmentHistory1" Relationship="Self.FK_ReplenishmentHistory_ReplenishmentHistory" FromRole="ReplenishmentHistory" ToRole="ReplenishmentHistory1" />
+          <NavigationProperty Name="ReplenishmentHistory2" Relationship="Self.FK_ReplenishmentHistory_ReplenishmentHistory" FromRole="ReplenishmentHistory1" ToRole="ReplenishmentHistory" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_ReplenishmentHistory" FromRole="ReplenishmentHistory" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="RunningInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Bottles" Type="Int32" />
+          <Property Name="PreviousQty" Type="Int32" />
+          <Property Name="NewQty" Type="Int32" Nullable="false" />
+          <Property Name="ActionType" Type="Int32" />
+          <Property Name="BottleTypeId" Type="Int32" />
+          <Property Name="ReleasingHistoryId" Type="Int32" />
+          <Property Name="DeliveryReceiptId" Type="Int32" />
+          <Property Name="ProdReqId" Type="Int32" />
+          <Property Name="InitialAdditionalId" Type="Int32" />
+          <Property Name="BranchSummaryId" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="ReplenishmentId" Type="Int32" />
+          <Property Name="TransferHistoryId" Type="Int32" />
+          <Property Name="DeliveryLogsId" Type="Int32" />
+          <Property Name="BranchId" Type="Int32" />
+          <NavigationProperty Name="BatchNoes" Relationship="Self.FK_BatchNo_RunningInventory" FromRole="RunningInventory" ToRole="BatchNo" />
+          <NavigationProperty Name="BottleType" Relationship="Self.FK_RunningInventory_BottleType" FromRole="RunningInventory" ToRole="BottleType" />
+          <NavigationProperty Name="BranchInventorySummary" Relationship="Self.FK_RunningInventory_BranchInventorySummary" FromRole="RunningInventory" ToRole="BranchInventorySummary" />
+          <NavigationProperty Name="DeliveryLog" Relationship="Self.FK_RunningInventory_DeliveryLogs" FromRole="RunningInventory" ToRole="DeliveryLogs" />
+          <NavigationProperty Name="DeliveryReceipt" Relationship="Self.FK_RunningInventory_DeliveryReceipt" FromRole="RunningInventory" ToRole="DeliveryReceipt" />
+          <NavigationProperty Name="InitialAdditionalHistory" Relationship="Self.FK_RunningInventory_InitialAdditionalHistory" FromRole="RunningInventory" ToRole="InitialAdditionalHistory" />
+          <NavigationProperty Name="ProdRequest" Relationship="Self.FK_RunningInventory_ProdRequest" FromRole="RunningInventory" ToRole="ProdRequest" />
+          <NavigationProperty Name="ReleasingHistory" Relationship="Self.FK_RunningInventory_ReleasingHistory" FromRole="RunningInventory" ToRole="ReleasingHistory" />
+          <NavigationProperty Name="ReplenishmentHistory" Relationship="Self.FK_RunningInventory_ReplenishmentHistory" FromRole="RunningInventory" ToRole="ReplenishmentHistory" />
+          <NavigationProperty Name="TransferHistory" Relationship="Self.FK_RunningInventory_TransferHistory" FromRole="RunningInventory" ToRole="TransferHistory" />
+        </EntityType>
+        <EntityType Name="SLIDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="CurrentQtyLimit" Type="Int32" Nullable="false" />
+          <Property Name="RequestedQtyLimit" Type="Int32" Nullable="false" />
+          <Property Name="ApproveQtyLimit" Type="Int32" Nullable="false" />
+          <Property Name="SLIID" Type="Int32" />
+          <NavigationProperty Name="StockLimitIncrease" Relationship="Self.FK_SLIDetails_StockLimitIncrease" FromRole="SLIDetails" ToRole="StockLimitIncrease" />
+        </EntityType>
+        <EntityType Name="SLIStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StockLimitIncreases" Relationship="Self.FK_StockLimitIncrease_SLIStatus" FromRole="SLIStatus" ToRole="StockLimitIncrease" />
+        </EntityType>
+        <EntityType Name="StockLimitIncrease">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchRequested" Type="Int32" />
+          <Property Name="BranchTo" Type="Int32" />
+          <Property Name="DateRequested" Type="DateTime" Precision="3" />
+          <Property Name="RequestedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateApproved" Type="DateTime" Precision="3" />
+          <Property Name="StatusId" Type="Int32" />
+          <NavigationProperty Name="SLIDetails" Relationship="Self.FK_SLIDetails_StockLimitIncrease" FromRole="StockLimitIncrease" ToRole="SLIDetails" />
+          <NavigationProperty Name="SLIStatu" Relationship="Self.FK_StockLimitIncrease_SLIStatus" FromRole="StockLimitIncrease" ToRole="SLIStatus" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="Boolean" />
+          <Property Name="Person" Type="Boolean" />
+          <Property Name="ContactInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DeliveryLogs" Relationship="Self.FK_DeliveryLogs_Supplier" FromRole="Supplier" ToRole="DeliveryLogs" />
+        </EntityType>
+        <EntityType Name="TransferHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="TransferFrom" Type="Int32" />
+          <Property Name="TransferTo" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="DateReceived" Type="DateTime" Precision="3" />
+          <Property Name="Receivedby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RunningInventories" Relationship="Self.FK_RunningInventory_TransferHistory" FromRole="TransferHistory" ToRole="RunningInventory" />
+        </EntityType>
+        <EntityType Name="TransferRemark">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RemarksBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProdRequestId" Type="Int32" />
+          <Property Name="PRStatusId" Type="Int32" />
+          <NavigationProperty Name="ProdRequest" Relationship="Self.FK_TransferRemakrs_ProdRequest" FromRole="TransferRemarks" ToRole="ProdRequest" />
+          <NavigationProperty Name="PRStatu" Relationship="Self.FK_TransferRemakrs_PRStatus" FromRole="TransferRemarks" ToRole="PRStatus" />
+        </EntityType>
+        <Association Name="FK_InitialAdditionalHistory_ActionType">
+          <End Role="ActionType" Type="Self.ActionType" Multiplicity="0..1" />
+          <End Role="InitialAdditionalHistory" Type="Self.InitialAdditionalHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InitialAdditionalHistory">
+              <PropertyRef Name="ActionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BatchNo_BranchInventoryByBatch">
+          <End Role="BranchInventoryByBatch" Type="Self.BranchInventoryByBatch" Multiplicity="0..1" />
+          <End Role="BatchNo" Type="Self.BatchNo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchInventoryByBatch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BatchNo">
+              <PropertyRef Name="BranchInventoryByBatchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BatchNo_RunningInventory">
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="0..1" />
+          <End Role="BatchNo" Type="Self.BatchNo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RunningInventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BatchNo">
+              <PropertyRef Name="RIId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_BottleType">
+          <End Role="BottleType" Type="Self.BottleType" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BottleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="BottleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_BranchInventorySummary">
+          <End Role="BranchInventorySummary" Type="Self.BranchInventorySummary" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchInventorySummary">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="BranchSummaryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliverylogDetails_DeliveryLogs">
+          <End Role="DeliveryLogs" Type="Self.DeliveryLog" Multiplicity="0..1" />
+          <End Role="DeliverylogDetails" Type="Self.DeliverylogDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryLogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverylogDetails">
+              <PropertyRef Name="DeliveryLogsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryLogs_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="DeliveryLogs" Type="Self.DeliveryLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryLogs">
+              <PropertyRef Name="SupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_DeliveryLogs">
+          <End Role="DeliveryLogs" Type="Self.DeliveryLog" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryLogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="DeliveryLogsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryReceipt_DRStatus">
+          <End Role="DRStatus" Type="Self.DRStatu" Multiplicity="0..1" />
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryReceipt">
+              <PropertyRef Name="DRStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryReceipt_DRTrasanctionType">
+          <End Role="DRTransactionType" Type="Self.DRTransactionType" Multiplicity="0..1" />
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRTransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryReceipt">
+              <PropertyRef Name="DRTransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliveryReceipt_DRTypes">
+          <End Role="DRTypes" Type="Self.DRType" Multiplicity="0..1" />
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliveryReceipt">
+              <PropertyRef Name="DRTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DRDetails_DeliveryReceipt">
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="0..1" />
+          <End Role="DRDetails" Type="Self.DRDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryReceipt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DRDetails">
+              <PropertyRef Name="DRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DRTransactions_DeliveryReceipt">
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="0..1" />
+          <End Role="DRTransactions" Type="Self.DRTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryReceipt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DRTransactions">
+              <PropertyRef Name="DRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_DeliveryReceipt">
+          <End Role="DeliveryReceipt" Type="Self.DeliveryReceipt" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryReceipt">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="DeliveryReceiptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DRTransactions_DRTrasanctionType">
+          <End Role="DRTransactionType" Type="Self.DRTransactionType" Multiplicity="0..1" />
+          <End Role="DRTransactions" Type="Self.DRTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DRTransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DRTransactions">
+              <PropertyRef Name="TransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_InitialAdditionalHistory">
+          <End Role="InitialAdditionalHistory" Type="Self.InitialAdditionalHistory" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InitialAdditionalHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="InitialAdditionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRDetails_ProdRequest">
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="0..1" />
+          <End Role="PRDetails" Type="Self.PRDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRDetails">
+              <PropertyRef Name="PRId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdRequest_PRStatus">
+          <End Role="PRStatus" Type="Self.PRStatu" Multiplicity="0..1" />
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdRequest">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProdRequest_PRTransactionTypes">
+          <End Role="PRTransactionTypes" Type="Self.PRTransactionType" Multiplicity="0..1" />
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRTransactionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProdRequest">
+              <PropertyRef Name="PRTransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_ProdRequest">
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="ProdReqId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferRemakrs_ProdRequest">
+          <End Role="ProdRequest" Type="Self.ProdRequest" Multiplicity="0..1" />
+          <End Role="TransferRemarks" Type="Self.TransferRemark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProdRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransferRemarks">
+              <PropertyRef Name="ProdRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransferRemakrs_PRStatus">
+          <End Role="PRStatus" Type="Self.PRStatu" Multiplicity="0..1" />
+          <End Role="TransferRemarks" Type="Self.TransferRemark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TransferRemarks">
+              <PropertyRef Name="PRStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReleasingHistory_ReleasingActionType">
+          <End Role="ReleasingActionType" Type="Self.ReleasingActionType" Multiplicity="0..1" />
+          <End Role="ReleasingHistory" Type="Self.ReleasingHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReleasingActionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReleasingHistory">
+              <PropertyRef Name="ReleasingActionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_ReleasingHistory">
+          <End Role="ReleasingHistory" Type="Self.ReleasingHistory" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReleasingHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="ReleasingHistoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplenishmentDetails_ReplenishmentHistory">
+          <End Role="ReplenishmentHistory" Type="Self.ReplenishmentHistory" Multiplicity="0..1" />
+          <End Role="ReplenishmentDetails" Type="Self.ReplenishmentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReplenishmentHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReplenishmentDetails">
+              <PropertyRef Name="RepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReplenishmentHistory_ReplenishmentHistory">
+          <End Role="ReplenishmentHistory" Type="Self.ReplenishmentHistory" Multiplicity="1" />
+          <End Role="ReplenishmentHistory1" Type="Self.ReplenishmentHistory" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ReplenishmentHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReplenishmentHistory1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_ReplenishmentHistory">
+          <End Role="ReplenishmentHistory" Type="Self.ReplenishmentHistory" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReplenishmentHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="ReplenishmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunningInventory_TransferHistory">
+          <End Role="TransferHistory" Type="Self.TransferHistory" Multiplicity="0..1" />
+          <End Role="RunningInventory" Type="Self.RunningInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransferHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RunningInventory">
+              <PropertyRef Name="TransferHistoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SLIDetails_StockLimitIncrease">
+          <End Role="StockLimitIncrease" Type="Self.StockLimitIncrease" Multiplicity="0..1" />
+          <End Role="SLIDetails" Type="Self.SLIDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockLimitIncrease">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SLIDetails">
+              <PropertyRef Name="SLIID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockLimitIncrease_SLIStatus">
+          <End Role="SLIStatus" Type="Self.SLIStatu" Multiplicity="0..1" />
+          <End Role="StockLimitIncrease" Type="Self.StockLimitIncrease" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SLIStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StockLimitIncrease">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fhpInventoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActionTypes" EntityType="Self.ActionType" />
+          <EntitySet Name="BatchNoes" EntityType="Self.BatchNo" />
+          <EntitySet Name="BottleTypes" EntityType="Self.BottleType" />
+          <EntitySet Name="BranchInventoryByBatches" EntityType="Self.BranchInventoryByBatch" />
+          <EntitySet Name="BranchInventorySummaries" EntityType="Self.BranchInventorySummary" />
+          <EntitySet Name="DeliverylogDetails" EntityType="Self.DeliverylogDetail" />
+          <EntitySet Name="DeliveryLogs" EntityType="Self.DeliveryLog" />
+          <EntitySet Name="DeliveryReceipts" EntityType="Self.DeliveryReceipt" />
+          <EntitySet Name="DRDetails" EntityType="Self.DRDetail" />
+          <EntitySet Name="DRStatus" EntityType="Self.DRStatu" />
+          <EntitySet Name="DRTransactions" EntityType="Self.DRTransaction" />
+          <EntitySet Name="DRTransactionTypes" EntityType="Self.DRTransactionType" />
+          <EntitySet Name="DRTypes" EntityType="Self.DRType" />
+          <EntitySet Name="InitialAdditionalHistories" EntityType="Self.InitialAdditionalHistory" />
+          <EntitySet Name="PRDetails" EntityType="Self.PRDetail" />
+          <EntitySet Name="ProdRequests" EntityType="Self.ProdRequest" />
+          <EntitySet Name="PRStatus" EntityType="Self.PRStatu" />
+          <EntitySet Name="PRTransactionTypes" EntityType="Self.PRTransactionType" />
+          <EntitySet Name="ReleasingActionTypes" EntityType="Self.ReleasingActionType" />
+          <EntitySet Name="ReleasingHistories" EntityType="Self.ReleasingHistory" />
+          <EntitySet Name="ReplenishmentDetails" EntityType="Self.ReplenishmentDetail" />
+          <EntitySet Name="ReplenishmentHistories" EntityType="Self.ReplenishmentHistory" />
+          <EntitySet Name="RunningInventories" EntityType="Self.RunningInventory" />
+          <EntitySet Name="SLIDetails" EntityType="Self.SLIDetail" />
+          <EntitySet Name="SLIStatus" EntityType="Self.SLIStatu" />
+          <EntitySet Name="StockLimitIncreases" EntityType="Self.StockLimitIncrease" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="TransferHistories" EntityType="Self.TransferHistory" />
+          <EntitySet Name="TransferRemarks" EntityType="Self.TransferRemark" />
+          <AssociationSet Name="FK_InitialAdditionalHistory_ActionType" Association="Self.FK_InitialAdditionalHistory_ActionType">
+            <End Role="ActionType" EntitySet="ActionTypes" />
+            <End Role="InitialAdditionalHistory" EntitySet="InitialAdditionalHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BatchNo_BranchInventoryByBatch" Association="Self.FK_BatchNo_BranchInventoryByBatch">
+            <End Role="BranchInventoryByBatch" EntitySet="BranchInventoryByBatches" />
+            <End Role="BatchNo" EntitySet="BatchNoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BatchNo_RunningInventory" Association="Self.FK_BatchNo_RunningInventory">
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+            <End Role="BatchNo" EntitySet="BatchNoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_BottleType" Association="Self.FK_RunningInventory_BottleType">
+            <End Role="BottleType" EntitySet="BottleTypes" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_BranchInventorySummary" Association="Self.FK_RunningInventory_BranchInventorySummary">
+            <End Role="BranchInventorySummary" EntitySet="BranchInventorySummaries" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliverylogDetails_DeliveryLogs" Association="Self.FK_DeliverylogDetails_DeliveryLogs">
+            <End Role="DeliveryLogs" EntitySet="DeliveryLogs" />
+            <End Role="DeliverylogDetails" EntitySet="DeliverylogDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryLogs_Supplier" Association="Self.FK_DeliveryLogs_Supplier">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="DeliveryLogs" EntitySet="DeliveryLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_DeliveryLogs" Association="Self.FK_RunningInventory_DeliveryLogs">
+            <End Role="DeliveryLogs" EntitySet="DeliveryLogs" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryReceipt_DRStatus" Association="Self.FK_DeliveryReceipt_DRStatus">
+            <End Role="DRStatus" EntitySet="DRStatus" />
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryReceipt_DRTrasanctionType" Association="Self.FK_DeliveryReceipt_DRTrasanctionType">
+            <End Role="DRTransactionType" EntitySet="DRTransactionTypes" />
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliveryReceipt_DRTypes" Association="Self.FK_DeliveryReceipt_DRTypes">
+            <End Role="DRTypes" EntitySet="DRTypes" />
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DRDetails_DeliveryReceipt" Association="Self.FK_DRDetails_DeliveryReceipt">
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipts" />
+            <End Role="DRDetails" EntitySet="DRDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DRTransactions_DeliveryReceipt" Association="Self.FK_DRTransactions_DeliveryReceipt">
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipts" />
+            <End Role="DRTransactions" EntitySet="DRTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_DeliveryReceipt" Association="Self.FK_RunningInventory_DeliveryReceipt">
+            <End Role="DeliveryReceipt" EntitySet="DeliveryReceipts" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DRTransactions_DRTrasanctionType" Association="Self.FK_DRTransactions_DRTrasanctionType">
+            <End Role="DRTransactionType" EntitySet="DRTransactionTypes" />
+            <End Role="DRTransactions" EntitySet="DRTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_InitialAdditionalHistory" Association="Self.FK_RunningInventory_InitialAdditionalHistory">
+            <End Role="InitialAdditionalHistory" EntitySet="InitialAdditionalHistories" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRDetails_ProdRequest" Association="Self.FK_PRDetails_ProdRequest">
+            <End Role="ProdRequest" EntitySet="ProdRequests" />
+            <End Role="PRDetails" EntitySet="PRDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdRequest_PRStatus" Association="Self.FK_ProdRequest_PRStatus">
+            <End Role="PRStatus" EntitySet="PRStatus" />
+            <End Role="ProdRequest" EntitySet="ProdRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdRequest_PRTransactionTypes" Association="Self.FK_ProdRequest_PRTransactionTypes">
+            <End Role="PRTransactionTypes" EntitySet="PRTransactionTypes" />
+            <End Role="ProdRequest" EntitySet="ProdRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_ProdRequest" Association="Self.FK_RunningInventory_ProdRequest">
+            <End Role="ProdRequest" EntitySet="ProdRequests" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferRemakrs_ProdRequest" Association="Self.FK_TransferRemakrs_ProdRequest">
+            <End Role="ProdRequest" EntitySet="ProdRequests" />
+            <End Role="TransferRemarks" EntitySet="TransferRemarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransferRemakrs_PRStatus" Association="Self.FK_TransferRemakrs_PRStatus">
+            <End Role="PRStatus" EntitySet="PRStatus" />
+            <End Role="TransferRemarks" EntitySet="TransferRemarks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReleasingHistory_ReleasingActionType" Association="Self.FK_ReleasingHistory_ReleasingActionType">
+            <End Role="ReleasingActionType" EntitySet="ReleasingActionTypes" />
+            <End Role="ReleasingHistory" EntitySet="ReleasingHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_ReleasingHistory" Association="Self.FK_RunningInventory_ReleasingHistory">
+            <End Role="ReleasingHistory" EntitySet="ReleasingHistories" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplenishmentDetails_ReplenishmentHistory" Association="Self.FK_ReplenishmentDetails_ReplenishmentHistory">
+            <End Role="ReplenishmentHistory" EntitySet="ReplenishmentHistories" />
+            <End Role="ReplenishmentDetails" EntitySet="ReplenishmentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReplenishmentHistory_ReplenishmentHistory" Association="Self.FK_ReplenishmentHistory_ReplenishmentHistory">
+            <End Role="ReplenishmentHistory" EntitySet="ReplenishmentHistories" />
+            <End Role="ReplenishmentHistory1" EntitySet="ReplenishmentHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_ReplenishmentHistory" Association="Self.FK_RunningInventory_ReplenishmentHistory">
+            <End Role="ReplenishmentHistory" EntitySet="ReplenishmentHistories" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunningInventory_TransferHistory" Association="Self.FK_RunningInventory_TransferHistory">
+            <End Role="TransferHistory" EntitySet="TransferHistories" />
+            <End Role="RunningInventory" EntitySet="RunningInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SLIDetails_StockLimitIncrease" Association="Self.FK_SLIDetails_StockLimitIncrease">
+            <End Role="StockLimitIncrease" EntitySet="StockLimitIncreases" />
+            <End Role="SLIDetails" EntitySet="SLIDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockLimitIncrease_SLIStatus" Association="Self.FK_StockLimitIncrease_SLIStatus">
+            <End Role="SLIStatus" EntitySet="SLIStatus" />
+            <End Role="StockLimitIncrease" EntitySet="StockLimitIncreases" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fhpInventoryModelStoreContainer" CdmEntityContainer="fhpInventoryEntities">
+          <EntitySetMapping Name="ActionTypes">
+            <EntityTypeMapping TypeName="fhpInventoryModel.ActionType">
+              <MappingFragment StoreEntitySet="ActionType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BatchNoes">
+            <EntityTypeMapping TypeName="fhpInventoryModel.BatchNo">
+              <MappingFragment StoreEntitySet="BatchNo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BatnchNo" ColumnName="BatnchNo" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="RIId" ColumnName="RIId" />
+                <ScalarProperty Name="BranchInventoryByBatchId" ColumnName="BranchInventoryByBatchId" />
+                <ScalarProperty Name="DateExpired" ColumnName="DateExpired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BottleTypes">
+            <EntityTypeMapping TypeName="fhpInventoryModel.BottleType">
+              <MappingFragment StoreEntitySet="BottleType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchInventoryByBatches">
+            <EntityTypeMapping TypeName="fhpInventoryModel.BranchInventoryByBatch">
+              <MappingFragment StoreEntitySet="BranchInventoryByBatch">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="DateExpired" ColumnName="DateExpired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchInventorySummaries">
+            <EntityTypeMapping TypeName="fhpInventoryModel.BranchInventorySummary">
+              <MappingFragment StoreEntitySet="BranchInventorySummary">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="TotalInventory" ColumnName="TotalInventory" />
+                <ScalarProperty Name="ProductReleased" ColumnName="ProductReleased" />
+                <ScalarProperty Name="ProductOnHand" ColumnName="ProductOnHand" />
+                <ScalarProperty Name="TotalIn" ColumnName="TotalIn" />
+                <ScalarProperty Name="TotalOut" ColumnName="TotalOut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliverylogDetails">
+            <EntityTypeMapping TypeName="fhpInventoryModel.DeliverylogDetail">
+              <MappingFragment StoreEntitySet="DeliverylogDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Good" ColumnName="Good" />
+                <ScalarProperty Name="Bad" ColumnName="Bad" />
+                <ScalarProperty Name="Lost" ColumnName="Lost" />
+                <ScalarProperty Name="TotalQty" ColumnName="TotalQty" />
+                <ScalarProperty Name="DateExpiry" ColumnName="DateExpiry" />
+                <ScalarProperty Name="DeliveryLogsId" ColumnName="DeliveryLogsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryLogs">
+            <EntityTypeMapping TypeName="fhpInventoryModel.DeliveryLog">
+              <MappingFragment StoreEntitySet="DeliveryLogs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SupId" ColumnName="SupId" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
+                <ScalarProperty Name="InputBy" ColumnName="InputBy" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryReceipts">
+            <EntityTypeMapping TypeName="fhpInventoryModel.DeliveryReceipt">
+              <MappingFragment StoreEntitySet="DeliveryReceipt">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DRTypeId" ColumnName="DRTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DRNumber" ColumnName="DRNumber" />
+                <ScalarProperty Name="DRStatusId" ColumnName="DRStatusId" />
+                <ScalarProperty Name="TransactionBranchId" ColumnName="TransactionBranchId" />
+                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
+                <ScalarProperty Name="IboNo" ColumnName="IboNo" />
+                <ScalarProperty Name="TransactionBy" ColumnName="TransactionBy" />
+                <ScalarProperty Name="DRTransactionTypeId" ColumnName="DRTransactionTypeId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateReleased" ColumnName="DateReleased" />
+                <ScalarProperty Name="ReleasedBy" ColumnName="ReleasedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ClosedBy" ColumnName="ClosedBy" />
+                <ScalarProperty Name="BranchClosed" ColumnName="BranchClosed" />
+                <ScalarProperty Name="ReleasedBranchId" ColumnName="ReleasedBranchId" />
+                <ScalarProperty Name="CreatedBranchId" ColumnName="CreatedBranchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DRDetails">
+            <EntityTypeMapping TypeName="fhpInventoryModel.DRDetail">
+              <MappingFragment StoreEntitySet="DRDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="DRQty" ColumnName="DRQty" />
+                <ScalarProperty Name="DRCloseQty" ColumnName="DRCloseQty" />
+                <ScalarProperty Name="DRId" ColumnName="DRId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DRStatus">
+            <EntityTypeMapping TypeName="fhpInventoryModel.DRStatu">
+              <MappingFragment StoreEntitySet="DRStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DRTransactions">
+            <EntityTypeMapping TypeName="fhpInventoryModel.DRTransaction">
+              <MappingFragment StoreEntitySet="DRTransactions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="TransactionTypeId" ColumnName="TransactionTypeId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="DRId" ColumnName="DRId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="TransactionBy" ColumnName="TransactionBy" />
+                <ScalarProperty Name="TransactionBranchId" ColumnName="TransactionBranchId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DRTransactionTypes">
+            <EntityTypeMapping TypeName="fhpInventoryModel.DRTransactionType">
+              <MappingFragment StoreEntitySet="DRTransactionType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DRTypes">
+            <EntityTypeMapping TypeName="fhpInventoryModel.DRType">
+              <MappingFragment StoreEntitySet="DRTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InitialAdditionalHistories">
+            <EntityTypeMapping TypeName="fhpInventoryModel.InitialAdditionalHistory">
+              <MappingFragment StoreEntitySet="InitialAdditionalHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ActionTypeId" ColumnName="ActionTypeId" />
+                <ScalarProperty Name="BranchIdTo" ColumnName="BranchIdTo" />
+                <ScalarProperty Name="BranchIdFrom" ColumnName="BranchIdFrom" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="BadQty" ColumnName="BadQty" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="Receivedby" ColumnName="Receivedby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRDetails">
+            <EntityTypeMapping TypeName="fhpInventoryModel.PRDetail">
+              <MappingFragment StoreEntitySet="PRDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CurrentOnHand" ColumnName="CurrentOnHand" />
+                <ScalarProperty Name="QuantityGiven" ColumnName="QuantityGiven" />
+                <ScalarProperty Name="QuantityNeeded" ColumnName="QuantityNeeded" />
+                <ScalarProperty Name="PRId" ColumnName="PRId" />
+                <ScalarProperty Name="QuantityReceived" ColumnName="QuantityReceived" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProdRequests">
+            <EntityTypeMapping TypeName="fhpInventoryModel.ProdRequest">
+              <MappingFragment StoreEntitySet="ProdRequest">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateRequest" ColumnName="DateRequest" />
+                <ScalarProperty Name="NameRequested" ColumnName="NameRequested" />
+                <ScalarProperty Name="BranchToRequest" ColumnName="BranchToRequest" />
+                <ScalarProperty Name="BranchRequested" ColumnName="BranchRequested" />
+                <ScalarProperty Name="PREQNo" ColumnName="PREQNo" />
+                <ScalarProperty Name="PRELNo" ColumnName="PRELNo" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="DateApproved" ColumnName="DateApproved" />
+                <ScalarProperty Name="Approvedby" ColumnName="Approvedby" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PRTransactionTypeId" ColumnName="PRTransactionTypeId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
+                <ScalarProperty Name="isApproved" ColumnName="isApproved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRStatus">
+            <EntityTypeMapping TypeName="fhpInventoryModel.PRStatu">
+              <MappingFragment StoreEntitySet="PRStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRTransactionTypes">
+            <EntityTypeMapping TypeName="fhpInventoryModel.PRTransactionType">
+              <MappingFragment StoreEntitySet="PRTransactionTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReleasingActionTypes">
+            <EntityTypeMapping TypeName="fhpInventoryModel.ReleasingActionType">
+              <MappingFragment StoreEntitySet="ReleasingActionType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReleasingHistories">
+            <EntityTypeMapping TypeName="fhpInventoryModel.ReleasingHistory">
+              <MappingFragment StoreEntitySet="ReleasingHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="ReleasingActionTypeId" ColumnName="ReleasingActionTypeId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="PromoNo" ColumnName="PromoNo" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReplenishmentDetails">
+            <EntityTypeMapping TypeName="fhpInventoryModel.ReplenishmentDetail">
+              <MappingFragment StoreEntitySet="ReplenishmentDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="RepId" ColumnName="RepId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReplenishmentHistories">
+            <EntityTypeMapping TypeName="fhpInventoryModel.ReplenishmentHistory">
+              <MappingFragment StoreEntitySet="ReplenishmentHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="BranchIdCreated" ColumnName="BranchIdCreated" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunningInventories">
+            <EntityTypeMapping TypeName="fhpInventoryModel.RunningInventory">
+              <MappingFragment StoreEntitySet="RunningInventory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Bottles" ColumnName="Bottles" />
+                <ScalarProperty Name="PreviousQty" ColumnName="PreviousQty" />
+                <ScalarProperty Name="NewQty" ColumnName="NewQty" />
+                <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+                <ScalarProperty Name="BottleTypeId" ColumnName="BottleTypeId" />
+                <ScalarProperty Name="ReleasingHistoryId" ColumnName="ReleasingHistoryId" />
+                <ScalarProperty Name="DeliveryReceiptId" ColumnName="DeliveryReceiptId" />
+                <ScalarProperty Name="ProdReqId" ColumnName="ProdReqId" />
+                <ScalarProperty Name="InitialAdditionalId" ColumnName="InitialAdditionalId" />
+                <ScalarProperty Name="BranchSummaryId" ColumnName="BranchSummaryId" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="ReplenishmentId" ColumnName="ReplenishmentId" />
+                <ScalarProperty Name="TransferHistoryId" ColumnName="TransferHistoryId" />
+                <ScalarProperty Name="DeliveryLogsId" ColumnName="DeliveryLogsId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SLIDetails">
+            <EntityTypeMapping TypeName="fhpInventoryModel.SLIDetail">
+              <MappingFragment StoreEntitySet="SLIDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="CurrentQtyLimit" ColumnName="CurrentQtyLimit" />
+                <ScalarProperty Name="RequestedQtyLimit" ColumnName="RequestedQtyLimit" />
+                <ScalarProperty Name="ApproveQtyLimit" ColumnName="ApproveQtyLimit" />
+                <ScalarProperty Name="SLIID" ColumnName="SLIID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SLIStatus">
+            <EntityTypeMapping TypeName="fhpInventoryModel.SLIStatu">
+              <MappingFragment StoreEntitySet="SLIStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockLimitIncreases">
+            <EntityTypeMapping TypeName="fhpInventoryModel.StockLimitIncrease">
+              <MappingFragment StoreEntitySet="StockLimitIncrease">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BranchRequested" ColumnName="BranchRequested" />
+                <ScalarProperty Name="BranchTo" ColumnName="BranchTo" />
+                <ScalarProperty Name="DateRequested" ColumnName="DateRequested" />
+                <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="DateApproved" ColumnName="DateApproved" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="fhpInventoryModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Person" ColumnName="Person" />
+                <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransferHistories">
+            <EntityTypeMapping TypeName="fhpInventoryModel.TransferHistory">
+              <MappingFragment StoreEntitySet="TransferHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="TransferFrom" ColumnName="TransferFrom" />
+                <ScalarProperty Name="TransferTo" ColumnName="TransferTo" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="Receivedby" ColumnName="Receivedby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransferRemarks">
+            <EntityTypeMapping TypeName="fhpInventoryModel.TransferRemark">
+              <MappingFragment StoreEntitySet="TransferRemarks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RemarksBy" ColumnName="RemarksBy" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ProdRequestId" ColumnName="ProdRequestId" />
+                <ScalarProperty Name="PRStatusId" ColumnName="PRStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
