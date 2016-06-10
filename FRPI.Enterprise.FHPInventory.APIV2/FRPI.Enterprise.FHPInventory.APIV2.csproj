@@ -126,6 +126,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Default12222\" />
     <Folder Include="Views\HelloWorld1\" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AddInventoryController.cs" />
+    <Compile Include="Controllers\Default12222Controller.cs" />
+    <Compile Include="Controllers\Default12Controller.cs" />
     <Compile Include="Controllers\HelloWorld1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
